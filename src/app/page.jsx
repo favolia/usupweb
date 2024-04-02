@@ -40,6 +40,8 @@ export default function Home() {
     <main className="w-full h-screen flex flex-col justify-center items-center">
       <p className="text-5xl text-center">
         GUA SAYANG BANGET SAMA UNI BODOAMAT MAU JERAWATAN, KAGA PERNAH JELEK
+        <br />
+        ~ dais
       </p>
       <div className="flex justify-center items-center gap-x-5">
 
