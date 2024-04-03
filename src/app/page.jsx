@@ -105,14 +105,20 @@ export default function Home() {
         </div>
       </div>
 
-
-      <p className="text-gray-500 mt-10 text-sm">
-        instagram:
-        <Link className="px-2 underline" href={'https://www.instagram.com/defavolia/'} target="_blank">
-          defavolia
-        </Link>
-      </p>
-
+      <div className="mt-10 text-center">
+        <p className="text-gray-500 text-sm">
+          instagram:
+          <Link className="px-2 underline" href={'https://www.instagram.com/defavolia/'} target="_blank">
+            defavolia
+          </Link>
+        </p>
+        <p className="text-gray-500 text-sm">
+          project:
+          <Link className="px-2 underline" href={'https://github.com/favolia/usupweb'} target="_blank">
+            favolia/usupweb
+          </Link>
+        </p>
+      </div>
 
     </main>
   );
