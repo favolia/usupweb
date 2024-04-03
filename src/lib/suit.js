@@ -10,55 +10,39 @@ const suit = () => {
     }
 }
 
-export const play = () => {
+export const play = ({ user }) => {
     const bot = suit()
-    const player = suit()
+    // const user = suit()
 
-    if (player.point === bot.point) {
+    if (user.point === bot.point) {
 
         return {
             detail: {
-                bot: {
-                    point: bot.point
-                },
-                user: {
-                    point: player.point
-                }
+                bot,
+                user
             },
             type: 'TYPE_DRAW'
         }
 
     } else if (
-        (player.point === 0 && bot.point === 2) || // Rock vs Scissors
-        (player.point === 1 && bot.point === 0) || // Paper vs Rock
-        (player.point === 2 && bot.point === 1)    // Scissors vs Paper
+        (user.point === 0 && bot.point === 2) || // Rock vs Scissors
+        (user.point === 1 && bot.point === 0) || // Paper vs Rock
+        (user.point === 2 && bot.point === 1)    // Scissors vs Paper
     ) {
         return {
             detail: {
-                bot: {
-                    point: bot.point,
-                    text: bot.text
-                },
-                user: {
-                    point: player.point,
-                    text: player.text
-                }
+                bot,
+                user
             },
-            type: 'TYPE_WIN'
+            type: 'TYPE_LOSE'
         }
     } else {
         return {
             detail: {
-                bot: {
-                    point: bot.point,
-                    text: bot.text
-                },
-                user: {
-                    point: player.point,
-                    text: player.text
-                }
+                bot,
+                user
             },
-            type: 'TYPE_LOSE'
+            type: 'TYPE_WIN'
         }
     }
 }

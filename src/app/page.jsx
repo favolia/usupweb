@@ -3,18 +3,31 @@ import Thumbs from "@/componets/thumbs";
 import { play } from "@/lib/suit";
 import Image from "next/image";
 import { useState } from "react";
-import { FaRegHandScissors } from "react-icons/fa6";
-import { IoThumbsUpOutline } from "react-icons/io5";
-import { FcLike, FcLikePlaceholder } from "react-icons/fc";
+import { FaRegHandScissors } from "react-icons/fa";
+import { FaRegHandPaper } from "react-icons/fa";
+import { MdQuestionMark } from "react-icons/md";
+import { FaRegHandRock } from "react-icons/fa";
 
 export default function Home() {
-  const [gameInfo, setGameInfo] = useState('GUA SAYANG BANGET SAMA UNI BODOAMAT MAU JERAWATAN, KAGA PERNAH JELEK');
-  const [userInfo, setUserInfo] = useState(0);
+  const [gameInfo, setGameInfo] = useState('START');
+  const [userHand, setUserHand] = useState(0);
+  const [botHand, setBotHand] = useState(null)
+  const [handSelect, setHandSelect] = useState(<FaRegHandRock className="rotate-90" size={60} />);
 
   const suit = () => {
-    const match = play()
+    const match = play({ user: { point: userHand } })
 
-    setUserInfo(match.detail)
+    switch (match.detail.bot.point) {
+      case 0:
+        setBotHand(<FaRegHandRock className="rotate-90" size={60} />)
+        break;
+      case 1:
+        setBotHand(<FaRegHandScissors className="scale-x-[-1]" size={60} />)
+        break;
+      case 2:
+        setBotHand(<FaRegHandPaper className="rotate-90" size={60} />)
+        break;
+    }
 
     switch (match.type) {
       case 'TYPE_WIN':
@@ -34,35 +47,64 @@ export default function Home() {
         break;
     }
 
+
   }
 
   return (
     <main className="w-full h-screen flex flex-col justify-center items-center">
-      <p className="text-5xl text-center">
-        GUA SAYANG BANGET SAMA UNI BODOAMAT MAU JERAWATAN, KAGA PERNAH JELEK
-        <br />
-        ~ dais
-      </p>
-      <div className="flex justify-center items-center gap-x-5">
+      <h1 className="text-5xl text-center">
+        {gameInfo}
+      </h1>
 
-        <div className="scale-x-[-1]">
-          <FcLikePlaceholder fontSize={70} />
+      <br />
+
+      <div className="flex flex-col justify-center items-center gap-y-7">
+        <div className="flex justify-center items-center gap-x-5">
+
+          <div className="">
+            {handSelect}
+          </div>
+
+          <div>
+            <h3 className="font-medium">vs</h3>
+          </div>
+
+          {/* Bot hand */}
+          <div className="scale-x-[-1]">
+            {botHand || <MdQuestionMark className="scale-x-[-1]" size={70} />}
+          </div>
+
         </div>
 
-        <div className="">
-          <FcLike fontSize={70} />
-        </div>
-        {/* <div className="font-bold">
-          lope
-        </div> */}
+        <div className="flex flex-col gap-y-3 justify-center items-center">
 
-        <div className="scale-x-[-1]">
-          <FcLikePlaceholder fontSize={70} />
+          <div className="flex gap-x-2">
+            <button onClick={() => {
+              setHandSelect(<FaRegHandRock className="rotate-90" size={60} />);
+              setUserHand(0)
+            }} className={`${userHand === 0 ? 'bg-gray-200 outline-none ring ring-black' : ''} rotate-90 h-16 transition duration-300 ease-in-out hover:bg-gray-200 w-16 flex justify-center items-center rounded-md cursor-pointer border border-black`}>
+              <FaRegHandRock size={50} />
+            </button>
+            <button onClick={() => {
+              setHandSelect(<FaRegHandScissors className="scale-x-[-1]" size={60} />);
+              setUserHand(1)
+            }} className={`${userHand === 1 ? 'bg-gray-200 outline-none ring ring-black' : ''} scale-x-[-1] h-16 transition duration-300 ease-in-out hover:bg-gray-200 w-16 flex justify-center items-center rounded-md cursor-pointer border border-black`}>
+              <FaRegHandScissors size={50} />
+            </button>
+            <button onClick={() => {
+              setHandSelect(<FaRegHandPaper className="rotate-90" size={60} />);
+              setUserHand(2)
+            }} className={`${userHand === 2 ? 'bg-gray-200 outline-none ring ring-black' : ''} rotate-90 h-16 transition duration-300 ease-in-out hover:bg-gray-200 w-16 flex justify-center items-center rounded-md cursor-pointer border border-black`}>
+              <FaRegHandPaper size={50} />
+            </button>
+          </div>
+
+          <button className="px-4 py-2 rounded-md text-white bg-black" onClick={() => suit()}>
+            SUIT!!!
+          </button>
         </div>
       </div>
-      {/* <button className="px-4 py-2 rounded-md text-white bg-black" onClick={() => suit()}>
-        play
-      </button> */}
+
     </main>
   );
 }
