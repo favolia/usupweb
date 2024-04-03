@@ -1,6 +1,6 @@
 'use client';
-import Thumbs from "@/componets/thumbs";
 import { play } from "@/lib/suit";
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { FaRegHandScissors } from "react-icons/fa";
@@ -104,6 +104,15 @@ export default function Home() {
           </button>
         </div>
       </div>
+
+
+      <p className="text-gray-500 mt-10 text-sm">
+        instagram:
+        <Link className="px-2 underline" href={'https://www.instagram.com/defavolia/'} target="_blank">
+          defavolia
+        </Link>
+      </p>
+
 
     </main>
   );
