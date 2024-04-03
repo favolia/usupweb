@@ -1,4 +1,4 @@
-const cases = ['Batu', 'Gunting', 'Kertas']
+const cases = ['Rock', 'Scissors', 'Paper']
 
 const suit = () => {
     const random = Math.round(Math.random() * (2 - 0) + 0);

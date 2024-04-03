@@ -99,7 +99,7 @@ export default function Home() {
             </button>
           </div>
 
-          <button className="px-4 py-2 rounded-md text-white bg-black" onClick={() => suit()}>
+          <button className="px-4 py-2 rounded-md text-white bg-black transition duration-200 hover:bg-black/70" onClick={() => suit()}>
             SUIT!!!
           </button>
         </div>
@@ -113,7 +113,7 @@ export default function Home() {
           </Link>
         </p>
         <p className="text-gray-500 text-sm">
-          project:
+          github:
           <Link className="px-2 underline" href={'https://github.com/favolia/usupweb'} target="_blank">
             favolia/usupweb
           </Link>
