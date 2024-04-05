@@ -3,10 +3,8 @@ import { play } from "@/lib/suit";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { FaRegHandScissors } from "react-icons/fa";
-import { FaRegHandPaper } from "react-icons/fa";
+import { FaRegHandScissors, FaRegHandRock, FaRegHandPaper } from "react-icons/fa";
 import { MdQuestionMark } from "react-icons/md";
-import { FaRegHandRock } from "react-icons/fa";
 
 export default function Home() {
   const [gameInfo, setGameInfo] = useState('START');

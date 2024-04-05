@@ -13,6 +13,7 @@ const suit = () => {
 export const play = ({ user }) => {
     const bot = suit()
     // const user = suit()
+    user.text = cases[user.point]
 
     if (user.point === bot.point) {
 
